@@ -6,6 +6,7 @@ import {
 import {CATEGORIES, MEALS} from "../../data/data";
 import MealItem from "../components/MealItem";
 import Meal from "../../models/meal";
+import MealList from "../components/MealList";
 
 const MealOverviewScreen = ({route, navigation}: MealOverviewScreenProps) => {
    const categoryId = route.params.categoryId;
@@ -23,48 +24,15 @@ const MealOverviewScreen = ({route, navigation}: MealOverviewScreenProps) => {
         }
    }, [categoryId, navigation]);
 
-
-
-    const renderMealItem: ListRenderItem<Meal> = ({item}:{item: Meal}) => {
-        const itemProps = {
-            mealId: item.id,
-            title: item.title,
-            duration: item.duration,
-            complexity: item.complexity,
-            imageUrl: item.imageUrl,
-            affordability: item.affordability,
-        }
-        return(<MealItem {...itemProps}/>);
-    }
     return (
-        <View style={styles.container}>
-            <View style={styles.list}>
+        <MealList displayedMeals={displayedMeals}></MealList>
+    )
 
-            <FlatList data={displayedMeals}
-            renderItem={renderMealItem}
-            keyExtractor={(item) => item.id}/>
-            </View>
-        </View>
 
-    );
+
+
 };
 
-const styles = StyleSheet.create({
-    container: {
-        display: 'flex',
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    text: {
-        fontSize: 18,
-        backgroundColor: "yellow",
-    },
-    list: {
-        display: 'flex',
-        flex: 1,
-        width: '90%',
-    }
-});
+
 
 export default MealOverviewScreen;

@@ -5,6 +5,7 @@ import {MEALS} from "../../data/data";
 import Meal from "../../models/meal";
 import meal from "../../models/meal";
 import IconButton from "../components/IconButton";
+import {FavoritesContext} from "../../store/context/FavoritesContextProvider";
 
 
 const MealDetailScreen = ({route, navigation}: MealDetailScreenProps) => {
@@ -12,16 +13,22 @@ const MealDetailScreen = ({route, navigation}: MealDetailScreenProps) => {
     const pickedMeal = MEALS.find((meal) => meal.id === mealId);
     const ingredients = pickedMeal ? pickedMeal.ingredients : null;
     const cookingSteps = pickedMeal ? pickedMeal.steps : null;
-
+    const favoriteMealsCtx = React.useContext(FavoritesContext);
+    const mealsFavorite = favoriteMealsCtx!.favorites.includes(mealId);
 
     function handleIconPress(){
-        console.log("pressed");
+        if(mealsFavorite){
+            favoriteMealsCtx?.removeFavorite(mealId);
+        }else{
+            favoriteMealsCtx?.addFavorite(mealId);
+        }
     }
     // Use useLayoutEffect to reduce the delay in updating the options
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
-               <IconButton icon="star" color="white" size={24} onPress={handleIconPress}></IconButton>
+               <IconButton icon={ mealsFavorite ? "star": 'star-outline' }
+                           color="white" size={24} onPress={handleIconPress}></IconButton>
             ),
         });
     }, [navigation, handleIconPress]); // Re-run when navigation or postText changes
