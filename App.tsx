@@ -6,6 +6,7 @@ import {NavigationContainer} from "@react-navigation/native";
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import MealOverviewScreen from "./src/screens/MealOverviewScreen";
 import {RootNavigator} from "./src/navigation/RootNavigator";
+import TabNavigator from "./src/navigation/TabNavigator";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,10 +14,9 @@ export default function App() {
     return (
         <SafeAreaProvider>
             <StatusBar style="light"/>
-            <RootNavigator>
+            <TabNavigator>
 
-            </RootNavigator>
-
+            </TabNavigator>
         </SafeAreaProvider>
 
     );

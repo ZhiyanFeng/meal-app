@@ -1,4 +1,4 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useContext, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 export interface FavoritesContextType {
@@ -11,6 +11,15 @@ export const FavoritesContext =createContext<FavoritesContextType | undefined>(u
 type props = {
     children: React.ReactNode;
 }
+// Create the custom hook
+export const useFavorites = () => {
+    const context = useContext(FavoritesContext);
+
+    if (context === null) {
+        throw new Error('useFavorites must be used within a FavoritesProvider');
+    }
+    return context;
+};
 const FavoritesContextProvider = (props: props) => {
     const [favorites, setFavorites] = useState<string[]>([]);
 

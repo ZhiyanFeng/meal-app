@@ -1,11 +1,12 @@
 // src/navigation/types.ts or types.ts
 import type {NativeStackNavigationProp, NativeStackScreenProps} from '@react-navigation/native-stack';
-import {NavigationProp, useNavigation} from "@react-navigation/native";
+import Meal from "../../models/meal";
 
 export type RootStackParamList = {
     Category: undefined; // No params expected
     MealOverview: { categoryId: string };
     MealDetail: {mealId: string};
+    FavoriteMeals: {displayedMeals: Meal[]};
 };
 
 // Define the type for a specific screen, e.g., 'Category'
