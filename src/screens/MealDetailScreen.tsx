@@ -33,7 +33,6 @@ const MealDetailScreen = ({route, navigation}: MealDetailScreenProps) => {
         });
     }, [navigation, handleIconPress]); // Re-run when navigation or postText changes
 
-
     const renderIngredientItem: ListRenderItem<string> = ({item}) => {
         return (
             <View>

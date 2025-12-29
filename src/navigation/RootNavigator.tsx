@@ -7,25 +7,27 @@ import {NavigationContainer} from "@react-navigation/native";
 import mealDetailScreen from "../screens/MealDetailScreen";
 import FavoritesContextProvider from "../../store/context/FavoritesContextProvider";
 import MealDetailScreen from "../screens/MealDetailScreen";
+import {BottomTabsScreen} from "react-native-screens";
+import tabNavigator from "./TabNavigator";
+import TabNavigator from "./TabNavigator";
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootNavigator = () => {
     return (
-        // <FavoritesContextProvider>
-        // <NavigationContainer>
-            <Stack.Navigator screenOptions={ {headerStyle: {backgroundColor: '#993333'},
+        <FavoritesContextProvider>
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="HomeTabs" screenOptions={ {headerStyle: {backgroundColor: '#993333'},
                 headerTintColor: 'white',
                 contentStyle: {backgroundColor: '#ffcc99'}}}>
-                <Stack.Screen name="Category" component={CategoryScreen}
-                              options={{title: 'Meal Categories',
-                              }}
+                <Stack.Screen name="HomeTabs" component={TabNavigator}
+                              options={{ headerShown: false }}
                 />
                 <Stack.Screen name="MealOverview" component={MealOverviewScreen}/>
                 <Stack.Screen name="MealDetail" component={MealDetailScreen}/>
             </Stack.Navigator>
-        // {/*</NavigationContainer>*/}
-        // {/*</FavoritesContextProvider>*/}
+        </NavigationContainer>
+        </FavoritesContextProvider>
     )
 }

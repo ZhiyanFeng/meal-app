@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, ListRenderItem, FlatList} from 'react-native';
 import Meal from "../../models/meal";
 import MealItem from "./MealItem";
+import {StackNavigationProp} from "@react-navigation/stack";
 
 type Props = {
     displayedMeals: Meal[];

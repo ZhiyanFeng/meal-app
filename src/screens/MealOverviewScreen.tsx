@@ -1,11 +1,8 @@
 import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, FlatList,ListRenderItem } from 'react-native';
 import {
     MealOverviewScreenProps,
 } from "../navigation/Types";
 import {CATEGORIES, MEALS} from "../../data/data";
-import MealItem from "../components/MealItem";
-import Meal from "../../models/meal";
 import MealList from "../components/MealList";
 
 const MealOverviewScreen = ({route, navigation}: MealOverviewScreenProps) => {
@@ -25,14 +22,8 @@ const MealOverviewScreen = ({route, navigation}: MealOverviewScreenProps) => {
    }, [categoryId, navigation]);
 
     return (
-        <MealList displayedMeals={displayedMeals}></MealList>
+        <MealList displayedMeals={displayedMeals} ></MealList>
     )
-
-
-
-
 };
-
-
 
 export default MealOverviewScreen;

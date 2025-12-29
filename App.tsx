@@ -14,9 +14,9 @@ export default function App() {
     return (
         <SafeAreaProvider>
             <StatusBar style="light"/>
-            <TabNavigator>
+            <RootNavigator>
 
-            </TabNavigator>
+            </RootNavigator>
         </SafeAreaProvider>
 
     );

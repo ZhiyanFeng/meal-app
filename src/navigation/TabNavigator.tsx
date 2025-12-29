@@ -3,27 +3,36 @@ import {StyleSheet} from 'react-native';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import FavoritesContextProvider from "../../store/context/FavoritesContextProvider";
 import {NavigationContainer} from "@react-navigation/native";
-import {RootStackParamList} from "./Types";
+import {HomeTabParamList, RootStackParamList} from "./Types";
 import {RootNavigator} from "./RootNavigator";
 import FavoritesScreen from "../screens/FavoritesScreen";
-import Meal from "../../models/meal";
-import MealDetailScreen from "../screens/MealDetailScreen";
+import CategoryScreen from "../screens/CategoryScreen";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-const Tab = createBottomTabNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<HomeTabParamList>();
 
 const TabNavigator = () => {
     return (
-        <FavoritesContextProvider>
-            <NavigationContainer>
-                <Tab.Navigator>
-                    <Tab.Screen name="Category" component={RootNavigator}
-                                  options={{headerShown:false}}
+        <Tab.Navigator>
+            <Tab.Screen name="Category" component={CategoryScreen}
+            options={{tabBarShowLabel: false,
+                tabBarIcon: ({ color, size, focused }) => (
+                    <Ionicons
+                        name={focused ? 'home' : 'home-outline'} // Change icon based on focused state
+                        color={color}
+                        size={size}
                     />
-                    <Tab.Screen name="FavoriteMeals" component={FavoritesScreen} />
-                    <Tab.Screen name="MealDetail" component={MealDetailScreen} />
-                </Tab.Navigator>
-            </NavigationContainer>
-        </FavoritesContextProvider>
+                ),}}/>
+            <Tab.Screen name="FavoriteMeals" component={FavoritesScreen}
+                options={{tabBarShowLabel: false,
+                tabBarIcon: ({ color, size, focused }) => (
+                <Ionicons
+                name={focused ? 'heart' : 'heart-outline'} // Change icon based on focused state
+                        color={color}
+                        size={size}
+            />
+            ),}}/>
+        </Tab.Navigator>
     )
 };
 
