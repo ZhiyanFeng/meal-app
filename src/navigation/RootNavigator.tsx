@@ -10,13 +10,15 @@ import MealDetailScreen from "../screens/MealDetailScreen";
 import {BottomTabsScreen} from "react-native-screens";
 import tabNavigator from "./TabNavigator";
 import TabNavigator from "./TabNavigator";
+import {Provider} from "react-redux";
+import store from "../../store/context/redux/store";
 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootNavigator = () => {
     return (
-        <FavoritesContextProvider>
+        <Provider store={store}>
         <NavigationContainer>
             <Stack.Navigator initialRouteName="HomeTabs" screenOptions={ {headerStyle: {backgroundColor: '#993333'},
                 headerTintColor: 'white',
@@ -28,6 +30,6 @@ export const RootNavigator = () => {
                 <Stack.Screen name="MealDetail" component={MealDetailScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
-        </FavoritesContextProvider>
+        </Provider>
     )
 }
